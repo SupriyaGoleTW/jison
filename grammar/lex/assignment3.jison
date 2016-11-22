@@ -2,40 +2,73 @@
 
 %%
 \s+         {/* skip whitespace */}
-[0-9]+      {return 'NAT';}
+[0-9]+      {return 'NUM';}
 "+"         {return '+';}
 "*"         {return '*';}
-[a-zA-z]    {return 'identifier';}
-";"    {return 'end';}
+"="         {return '=';}
+[a-zA-Z]+   {return 'IDENTIFIER';}
+";"         {return 'TERMINATOR';}
 <<EOF>>     {return 'EOF'}
 
 /lex
 
 %{
-    var processTree = require('./grammar/js/assignment3.js');
-    var NumberNode = require('./grammar/nodes/NumberNode.js');
-    var Tree = require('./grammar/nodes/Tree.js');
-    var OperatorNode = require('./grammar/nodes/OperatorNode.js');
+    var path = require('path');
+    var processTree = require(path.resolve('./grammar/js/assignment3.js'));
+    var NumberNode = require(path.resolve('./grammar/nodes/NumberNode.js'));
+    var IdentifierNode = require(path.resolve('./grammar/nodes/IdentifierNode.js'));
+    var Tree = require(path.resolve('./grammar/nodes/Tree.js'));
+    var OperatorNode = require(path.resolve('./grammar/nodes/OperatorNode.js'));
+    var trees = [];
 %}
 
 /* operator associations and precedence */
 
 %left '+'
 %left '*'
+%left '='
+%left 'TERMINATOR'
 
+%start expressions
 %%
 
 expressions
-    : E EOF
-    {return console.log(processTree($1)); };
+    : block
+    | expressions block
+    | expressions EOF
+        {return trees};
 
 E
-    : E '+' E
-        {$$ = new Tree(new OperatorNode($2), [$3, $1]);}
+    : assignment_expression
+
+    | E '+' E
+        {
+            $$ = new Tree(new OperatorNode($2), [$1, $3]);
+        }
 
     | E '*' E
-        {$$ = new Tree(new OperatorNode($2), [$3, $1]);}
+        {$$ = new Tree(new OperatorNode($2), [$1, $3]);}
 
-    | NAT
+    | NUM
         {$$ = new NumberNode($1);}
+
+    | identifier
     ;
+
+assignment_expression :
+    identifier '=' E
+        {
+            $$ = new Tree(new OperatorNode($2),[$1,$3])
+            processTree.addToMap($1,$3);
+        };
+
+identifier :
+    IDENTIFIER
+        {$$ = new IdentifierNode($1);}
+    ;
+
+block : E TERMINATOR
+        {
+          trees.push($$);
+        }
+      ;
