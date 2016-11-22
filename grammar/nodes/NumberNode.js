@@ -1,11 +1,11 @@
 var NumberNode = function (nodeValue) {
     this.value = nodeValue;
     this.type = 'number';
-    this.evaluate = evaluate;
+    this.evaluateNodes = evaluate;
 };
 
-var evaluate = function (value) {
-  return value;
+var evaluate = function () {
+  return this.value;
 };
 
 module.exports = NumberNode;
