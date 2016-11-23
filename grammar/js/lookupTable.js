@@ -1,12 +1,16 @@
-var lookupTable = function(){
-    this.addToMap =  function (identifier, value) {
+var lookupTable = function () {
+    this.addToMap = function (identifier, value) {
         this.identifierMapping[identifier] = value;
     };
-    
+
     this.identifierMapping = {};
-    
+
     this.getIdentifierValue = function (identifier) {
-        return this.identifierMapping[identifier];    
+        var value = this.identifierMapping[identifier];
+        if (value !== undefined) {
+            return value;
+        }
+        throw new Error(identifier + ' is not defined');
     };
 };
 

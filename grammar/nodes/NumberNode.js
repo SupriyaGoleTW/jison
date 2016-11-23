@@ -1,5 +1,5 @@
 var NumberNode = function (nodeValue) {
-    this.value = nodeValue;
+    this.value = Number(nodeValue);
     this.type = 'number';
     this.evaluateNodes = evaluate;
 };

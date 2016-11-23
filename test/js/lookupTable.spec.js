@@ -1,13 +1,26 @@
 var assert = require('assert');
-var lookupTable = require('../../grammar/js/lookupTable');
+var LookupTable = require('../../grammar/js/lookupTable');
 
 describe('Lookup Table', function () {
+    var lookupTable;
+    beforeEach(function () {
+        lookupTable = new LookupTable();
+    });
+    
     it('should add variable value into storage', function () {
-        var identifierStorage = new lookupTable();
-        identifierStorage.addToMap('x', 5);
-        var xValue = identifierStorage.getIdentifierValue('x');
-        var zValue = identifierStorage.getIdentifierValue('z');
+        lookupTable.addToMap('x', 5);
+        var xValue = lookupTable.getIdentifierValue('x');
         assert.equal(xValue, 5);
-        assert.equal(zValue, undefined);
+    });
+
+    it('should not throw an error when value of identifier is zero',function () {
+        lookupTable.addToMap('x', 0);
+        assert.equal(lookupTable.getIdentifierValue('x'), 0);
+    });
+
+    it('should throw an error when look for an identifier which is absent in lookup table', function () {
+        assert.throws(function () {
+            lookupTable.getIdentifierValue('x')
+        },/x is not defined/);
     });
 });
