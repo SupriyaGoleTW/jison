@@ -1,0 +1,27 @@
+{
+  "name": "jison",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "jison": "^0.4.17"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "/usr/local/lib/node_modules/mocha/bin/mocha --recursive test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SupriyaGoleTW/jison.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SupriyaGoleTW/jison/issues"
+  },
+  "homepage": "https://github.com/SupriyaGoleTW/jison#readme"
+}

@@ -5,7 +5,7 @@ var Tree = function (parentNode, childNodes) {
 };
 
 var evaluate = function (lookupTable) {
-    return this.parentNode.evaluateNodes(lookupTable,this.childNodes);
+    return this.parentNode.evaluateNodes(lookupTable, this.childNodes);
 };
 
 module.exports = Tree;

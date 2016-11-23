@@ -1,8 +1,13 @@
-var lookupTable = {
-    addToMap: function (identifier, value) {
+var lookupTable = function(){
+    this.addToMap =  function (identifier, value) {
         this.identifierMapping[identifier] = value;
-    },
-    identifierMapping: {}
+    };
+    
+    this.identifierMapping = {};
+    
+    this.getIdentifierValue = function (identifier) {
+        return this.identifierMapping[identifier];    
+    };
 };
 
 module.exports = lookupTable;

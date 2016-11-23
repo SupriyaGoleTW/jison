@@ -5,7 +5,7 @@ var IdentifierNode = function (nodeValue) {
 };
 
 var evaluate = function (lookupTable, childNodes) {
-    return lookupTable.identifierMapping[this.value];
+    return lookupTable.getIdentifierValue(this.value);
 };
 
 
