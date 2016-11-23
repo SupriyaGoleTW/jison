@@ -4,8 +4,8 @@ var OperatorNode = function (nodeValue) {
     this.evaluateNodes = evaluate;
 };
 
-var evaluate = function (val1, val2) {
-    return eval(val1 + this.value + val2);
+var evaluate = function (lookupTable,childNodes) {
+    return eval(childNodes[0].evaluateNodes(lookupTable) + this.value + childNodes[1].evaluateNodes(lookupTable));
 };
 
 module.exports = OperatorNode;

@@ -23,7 +23,6 @@ describe('Evaluate Tree', function () {
 
         new Tree(assignmentOp,[x,val1]);
         valueSubstitutorTree = new Tree(plus,[x,val2]);
-        
         //x = 10; y = x+2; y;  
         
     });

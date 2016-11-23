@@ -1,15 +1,9 @@
-var actions = {
-    process: function (trees) {
-        var finalOutput = null;
-        trees.forEach(function (tree) {
-            finalOutput = tree.evaluateNodes();
-        });
-        return finalOutput;
-    },
-    addToMap: function (identifier, value) {
-        this.identifierMapping[identifier.value] = value;
-    },
-    identifierMapping:{}
+var process = function (trees,lookupTable) {
+    var finalOutput = null;
+    trees.forEach(function (tree) {
+        finalOutput = tree.evaluateNodes(lookupTable);
+    });
+    return finalOutput;
 };
 
-module.exports = actions;
+module.exports = process;
