@@ -12,6 +12,10 @@ var lookupTable = function () {
         }
         throw new Error(identifier + ' is not defined');
     };
+
+    this.has = function (identifier) {
+      return !!this.identifierMapping[identifier];
+    };
 };
 
 module.exports = lookupTable;

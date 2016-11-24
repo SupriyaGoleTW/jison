@@ -23,4 +23,13 @@ describe('Lookup Table', function () {
             lookupTable.getIdentifierValue('x')
         },/x is not defined/);
     });
+
+    it('should return true when identifier is present in the table', function () {
+        lookupTable.addToMap('x',5);
+        assert.ok(lookupTable.has('x'));
+    });
+
+    it('should return false when identifier is not present in the table', function () {
+        assert.ok(!lookupTable.has('x'));
+    });
 });

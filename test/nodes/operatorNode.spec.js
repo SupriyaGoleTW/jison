@@ -29,6 +29,9 @@ describe('Evaluate Assignment Expression', function () {
         var result = plus.evaluateNodes(identifierStorage,[tree,val2]);
         assert.equal(result,50);
     });
+    it('should return equivalent js code', function () {
+        assert.equal(plus.toJS(new lookupTable(),[val1,val2]),'(10 + 20)');
+    });
 });
 
 
