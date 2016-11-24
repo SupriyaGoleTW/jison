@@ -12,6 +12,7 @@ var evaluate = function (lookupTable, childNodes) {
 var toJS = function (lookupTable) {
     if (lookupTable.has(this.value))
         return this.value;
+    lookupTable.addToMap(this.value);
     return 'var ' + this.value;
 };
 

@@ -11,7 +11,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "/usr/local/lib/node_modules/mocha/bin/mocha --recursive test/"
+    "test": "/usr/local/lib/node_modules/mocha/bin/mocha --recursive test/",
+    "coverage": "istanbul cover _mocha -- --recursive test"
   },
   "repository": {
     "type": "git",

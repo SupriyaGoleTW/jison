@@ -1,4 +1,4 @@
-var processTree = require('/Users/supriyag/workspace/jison/grammar/js/assignment3.js');
+var processTree = require('/Users/supriyag/workspace/jison/grammar/js/assignment3.js').toJS;
 var lookupTable = require('../js/lookupTable');
 var Parser = require('jison').Parser;
 var fs = require('fs');

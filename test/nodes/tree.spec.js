@@ -49,6 +49,4 @@ describe('Evaluate Tree', function () {
 
         assert.equal(tree.toJS(new lookupTable()),'var x = (30 + (10 * 20))');
     });
-
-
 });

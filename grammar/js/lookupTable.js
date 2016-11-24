@@ -1,6 +1,6 @@
 var lookupTable = function () {
     this.addToMap = function (identifier, value) {
-        this.identifierMapping[identifier] = value;
+        this.identifierMapping[identifier] = {value:value};
     };
 
     this.identifierMapping = {};
@@ -8,7 +8,7 @@ var lookupTable = function () {
     this.getIdentifierValue = function (identifier) {
         var value = this.identifierMapping[identifier];
         if (value !== undefined) {
-            return value;
+            return value.value;
         }
         throw new Error(identifier + ' is not defined');
     };
